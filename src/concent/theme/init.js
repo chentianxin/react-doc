@@ -1,8 +1,11 @@
 export default function init() {
   let paletteType = 0;
-  if(window.hasOwnProperty('matchMedia')) {
+  const localConfig = JSON.parse(localStorage.getItem('themeConfig'));
+  if(localConfig?.paletteType) {
+    paletteType = localConfig?.paletteType;
+  }else {
     const { matches } = window.matchMedia('prefers-color-scheme: dark');
-    if(matches) paletteType = 2;
+    if(matches) paletteType = 1;
   }
 
   return {
